@@ -1,3 +1,4 @@
+import React from 'react';
 import { TodoProvider } from '../TodoContext';
 import { AppUI } from './AppUI';
 
@@ -7,6 +8,6 @@ const App = () => {
       <AppUI />
     </TodoProvider>
   );
-}
+};
 
 export default App;
