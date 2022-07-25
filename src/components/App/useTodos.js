@@ -1,10 +1,7 @@
-import React, { createContext, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const TodoContext = createContext();
-
-const TodoProvider = ({ children }) => {
+const useTodos = () => {
   const {
     item: todos,
     saveItem: setTodos,
@@ -58,30 +55,20 @@ const TodoProvider = ({ children }) => {
     setTodos(newTodos);
   };
 
-  return (
-    <TodoContext.Provider
-      value={{
-        error,
-        loading,
-        totalTodos,
-        completedTodos,
-        searchValue,
-        setSearchValue,
-        searchedTodos,
-        addTodo,
-        completeTodo,
-        deleteTodo,
-        openModal,
-        setOpenModal,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
+  return {
+    error,
+    loading,
+    totalTodos,
+    completedTodos,
+    searchValue,
+    setSearchValue,
+    searchedTodos,
+    addTodo,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+  };
 };
 
-TodoProvider.propTypes = {
-  children: PropTypes.any,
-};
-
-export { TodoContext, TodoProvider };
+export { useTodos };

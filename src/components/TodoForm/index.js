@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { TodoContext } from '../TodoContext';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import './TodoForm.css';
 
-const TodoForm = () => {
+const TodoForm = ({ addTodo, setOpenModal }) => {
   const [newTodoValue, setNewTodoValue] = useState('');
-  const { addTodo, setOpenModal } = useContext(TodoContext);
 
   const onChange = event => {
     setNewTodoValue(event.target.value);
@@ -42,6 +42,11 @@ const TodoForm = () => {
       </div>
     </form>
   );
+};
+
+TodoForm.propTypes = {
+  addTodo: PropTypes.func,
+  setOpenModal: PropTypes.func,
 };
 
 export { TodoForm };

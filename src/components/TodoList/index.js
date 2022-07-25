@@ -11,7 +11,7 @@ const TodoList = ({ children }) => {
 };
 
 TodoList.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.array.isRequired,
 };
 
 export { TodoList };
