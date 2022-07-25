@@ -11,7 +11,7 @@ const Modal = ({ children }) => {
 };
 
 Modal.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.element,
 };
 
 export { Modal };

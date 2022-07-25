@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../TodoContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './TodoSearch.css';
 
-const TodoSearch = () => {
-  const { searchValue, setSearchValue } = useContext(TodoContext);
-
+const TodoSearch = ({ searchValue, setSearchValue }) => {
   const onSearchValueChange = event => {
     setSearchValue(event.target.value);
   };
@@ -17,6 +15,11 @@ const TodoSearch = () => {
       onChange={onSearchValueChange}
     />
   );
+};
+
+TodoSearch.propTypes = {
+  searchValue: PropTypes.string,
+  setSearchValue: PropTypes.func,
 };
 
 export { TodoSearch };
