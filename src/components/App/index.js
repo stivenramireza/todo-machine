@@ -12,7 +12,7 @@ import { Modal } from '../Modal';
 import { TodoForm } from '../TodoForm';
 import { TodoError } from '../TodoError';
 import { TodoLoading } from '../TodoLoading';
-import { TodoEmpty } from '../TodoEmpty';
+import { TodoMessage } from '../TodoMessage';
 
 const App = () => {
   const {
@@ -29,20 +29,27 @@ const App = () => {
     searchValue,
     setSearchValue,
   } = useTodos();
+
   return (
     <Fragment>
       <TodoHeader>
         <TodoCounter total={total} completed={completed} />
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </TodoHeader>
-      <TodoList>
-        {error && <TodoError error={error} />}
-        {loading &&
-          Array.from({ length: 4 }).map((_, index) => (
-            <TodoLoading key={index} />
-          ))}
-        {!loading && !searchedTodos.length && <TodoEmpty />}
-        {searchedTodos.map(todo => (
+      <TodoList
+        error={error}
+        loading={loading}
+        totalTodos={total}
+        searchedTodos={searchedTodos}
+        searchText={searchValue}
+        onError={() => <TodoError />}
+        onLoading={() => <TodoLoading />}
+        onEmptyTodos={() => <TodoMessage message="Create your first TODO" />}
+        onEmptySearchResults={searchText => (
+          <TodoMessage message={`There are not results for ${searchText}`} />
+        )}
+      >
+        {todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -50,7 +57,7 @@ const App = () => {
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
-        ))}
+        )}
       </TodoList>
       {openModal && (
         <Modal>

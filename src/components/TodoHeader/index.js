@@ -6,7 +6,7 @@ const TodoHeader = ({ children }) => {
 };
 
 TodoHeader.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.array,
 };
 
 export { TodoHeader };
