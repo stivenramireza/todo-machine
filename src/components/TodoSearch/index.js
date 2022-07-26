@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TodoSearch.css';
 
-const TodoSearch = ({ searchValue, setSearchValue }) => {
-  const onSearchValueChange = event => {
+const TodoSearch = ({ searchValue, setSearchValue, loading }) => {
+  const onSearchValueChange = (event) => {
     setSearchValue(event.target.value);
   };
 
@@ -13,6 +13,7 @@ const TodoSearch = ({ searchValue, setSearchValue }) => {
       placeholder="Enter a word"
       value={searchValue}
       onChange={onSearchValueChange}
+      disabled={loading}
     />
   );
 };
@@ -20,6 +21,7 @@ const TodoSearch = ({ searchValue, setSearchValue }) => {
 TodoSearch.propTypes = {
   searchValue: PropTypes.string,
   setSearchValue: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export { TodoSearch };

@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <Fragment>
-      <TodoHeader>
+      <TodoHeader loading={loading}>
         <TodoCounter total={total} completed={completed} />
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </TodoHeader>
@@ -43,7 +43,11 @@ const App = () => {
         searchedTodos={searchedTodos}
         searchText={searchValue}
         onError={() => <TodoError />}
-        onLoading={() => <TodoLoading />}
+        onLoading={() =>
+          Array.from({ length: 4 }).map((_, index) => (
+            <TodoLoading key={index} />
+          ))
+        }
         onEmptyTodos={() => <TodoMessage message="Create your first TODO" />}
         onEmptySearchResults={(searchText) => (
           <TodoMessage message={`There are not results for ${searchText}`} />

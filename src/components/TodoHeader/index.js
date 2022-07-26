@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
-const TodoHeader = ({ children }) => {
-  return <header>{children}</header>;
+const TodoHeader = ({ children, loading }) => {
+  return (
+    <header>
+      {Children.toArray(children).map((child) =>
+        cloneElement(child, { loading })
+      )}
+    </header>
+  );
 };
 
 TodoHeader.propTypes = {
   children: PropTypes.array,
+  loading: PropTypes.bool,
 };
 
 export { TodoHeader };
