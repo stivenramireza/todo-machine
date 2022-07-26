@@ -22,7 +22,9 @@ const TodoList = ({
 
       {!loading && !totalTodos && onEmptyTodos()}
 
-      {totalTodos && !searchedTodos.length && onEmptySearchResults(searchText)}
+      {totalTodos > 0 &&
+        !searchedTodos.length &&
+        onEmptySearchResults(searchText)}
 
       {searchedTodos.map(children || render)}
 

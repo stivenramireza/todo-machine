@@ -45,11 +45,11 @@ const App = () => {
         onError={() => <TodoError />}
         onLoading={() => <TodoLoading />}
         onEmptyTodos={() => <TodoMessage message="Create your first TODO" />}
-        onEmptySearchResults={searchText => (
+        onEmptySearchResults={(searchText) => (
           <TodoMessage message={`There are not results for ${searchText}`} />
         )}
       >
-        {todo => (
+        {(todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
