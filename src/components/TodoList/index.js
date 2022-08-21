@@ -12,7 +12,7 @@ const TodoList = ({
   onLoading,
   onEmptyTodos,
   onEmptySearchResults,
-  render,
+  render: renderFunc,
   children,
 }) => {
   return (
@@ -26,7 +26,7 @@ const TodoList = ({
         !searchedTodos.length &&
         onEmptySearchResults(searchText)}
 
-      {searchedTodos.map(children || render)}
+      {!loading && !error && searchedTodos.map(children || renderFunc)}
 
       <ul>{children}</ul>
     </section>

@@ -13,6 +13,7 @@ import { TodoForm } from '../TodoForm';
 import { TodoError } from '../TodoError';
 import { TodoLoading } from '../TodoLoading';
 import { TodoMessage } from '../TodoMessage';
+import { ChangeAlertWithStorageListener } from '../ChangeAlert';
 
 const App = () => {
   const {
@@ -28,6 +29,7 @@ const App = () => {
     completedTodos: completed,
     searchValue,
     setSearchValue,
+    synchronizeTodos,
   } = useTodos();
 
   return (
@@ -69,6 +71,7 @@ const App = () => {
         </Modal>
       )}
       <CreateTodoButton setOpenModal={setOpenModal} />
+      <ChangeAlertWithStorageListener synchronize={synchronizeTodos} />
     </Fragment>
   );
 };
