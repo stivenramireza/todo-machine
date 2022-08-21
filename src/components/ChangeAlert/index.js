@@ -3,9 +3,11 @@ import './ChangeAlert.css';
 
 import PropTypes from 'prop-types';
 
-import { withStorageListener } from './withStorageListener';
+import { useStorageListener } from './useStorageListener';
 
-const ChangeAlert = ({ show, toggleShow }) => {
+const ChangeAlert = ({ synchronize }) => {
+  const { show, toggleShow } = useStorageListener(synchronize);
+
   if (show) {
     return (
       <div className="ChangeAlert-bg">
@@ -26,15 +28,8 @@ const ChangeAlert = ({ show, toggleShow }) => {
   }
 };
 
-const ChangeAlertWithStorageListener = withStorageListener(ChangeAlert);
-
 ChangeAlert.propTypes = {
-  show: PropTypes.bool,
-  toggleShow: PropTypes.func,
+  synchronize: PropTypes.func,
 };
 
-ChangeAlert.defaultProps = {
-  show: false,
-};
-
-export { ChangeAlertWithStorageListener };
+export { ChangeAlert };
